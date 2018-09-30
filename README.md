@@ -32,3 +32,7 @@ Install npm dependencies:
 Once installed, `npm run start` will start the app up at `localhost:8080`.
 
 You may also `npm run build` and open the generated `docs/index.html` file in your browser.
+
+### Linting ###
+
+`npm run lint` will lint all JS files in the project using standard configuration.

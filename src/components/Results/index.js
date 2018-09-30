@@ -1,7 +1,6 @@
-import { encodedQuery } from '../SearchForm'
 import { apiKey } from '../../constants'
 import getCard from '../Card'
-import style from './style.scss'
+import './style.scss'
 
 const resultsEl = document.querySelector('.results')
 const seeMoreEl = document.querySelector('.see-more')
@@ -18,13 +17,13 @@ export const getResults = q => {
   resultsEl.innerHTML = ''
   query = encodeURIComponent(q)
 
-  if (localStorage.getItem(query)) {
+  if (window.localStorage.getItem(query)) {
     page = 1
-    const cachedResults = JSON.parse(localStorage.getItem(query))
+    const cachedResults = JSON.parse(window.localStorage.getItem(query))
     if (!cachedResults.length) {
       resultsEl.classList.add(noResultsClass)
     } else {
-      displayResults(cachedResults);
+      displayResults(cachedResults)
     }
     return
   }
@@ -64,7 +63,7 @@ export const onFetch = data => {
   if (page > 1) return
 
   try {
-    localStorage.setItem(query, JSON.stringify(data.results))
-  } catch(err) {
+    window.localStorage.setItem(query, JSON.stringify(data.results))
+  } catch (err) {
   }
 }

@@ -1,6 +1,6 @@
 import { linkTo } from '../../routes'
 import { getResults } from '../Results'
-import style from './style.scss'
+import './style.scss'
 
 const formEl = document.querySelector('.search')
 const queryEl = formEl.querySelector('.search__query')
@@ -17,5 +17,5 @@ export const init = () => {
 
     linkTo(`listings/${query}`)
     getResults(query)
-  });
+  })
 }

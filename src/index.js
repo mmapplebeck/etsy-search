@@ -1,3 +1,4 @@
+import routie from '../lib/routie'
 import getCard from './components/Card'
 
 const formEl = document.querySelector('.search')
@@ -12,6 +13,8 @@ formEl.addEventListener('submit', e => {
   const query = queryEl.value
 
   if (!query) return
+
+  routie(`listings/${query}`)
 
   script.setAttribute('src', `https://openapi.etsy.com/v2/listings/active.js?callback=EtsySearch.callback&api_key=${apiKey}&limit=5&keywords=${query}&fields=title,url,price`)
 

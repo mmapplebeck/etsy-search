@@ -1,3 +1,6 @@
-<div class="card__image"></div>
-<h3 class="card__title"><%= title %></h3>
-<div class="card__price"><%= price %></div>
+<a class="card" href=<%= url %> target="_blank">
+  <div class="card__image" style="background-image: url(<%= MainImage.url_570xN %>)"></div>
+  <h3 class="card__title"><%= title %></h3>
+  <div class="card__seller"><%= Shop.shop_name %></div>
+  <div class="card__price">$<%= price %></div>
+</a>

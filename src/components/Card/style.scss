@@ -1,6 +1,4 @@
 .card {
-  width: 50%;
-  padding: 0.5rem;
   color: inherit;
   text-decoration: none;
 }
@@ -21,6 +19,15 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+
+  .card:hover & {
+    text-decoration: underline;
+  }
+}
+
+.card__seller {
+  font-size: 0.875rem;
+  color: #666;
 }
 
 .card__price {

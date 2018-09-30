@@ -40,6 +40,14 @@ module.exports = {
           },
           'sass-loader'
         ]
+      },
+      {
+        test: /\.ejs$/,
+        use: [
+          {
+            loader: 'ejs-loader'
+          }
+        ]
       }
     ]
   },

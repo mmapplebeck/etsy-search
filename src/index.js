@@ -17,17 +17,32 @@ formEl.addEventListener('submit', e => {
 });
 
 function fetchResults(query) {
+  const encodedQuery = encodeURIComponent(query)
+
+  if (localStorage.getItem(encodedQuery)) {
+    displayResults(JSON.parse(localStorage.getItem(encodedQuery)));
+    return
+  }
+
   const script = document.createElement('script')
 
-  script.setAttribute('src', `https://openapi.etsy.com/v2/listings/active.js?callback=EtsySearch.callback&api_key=${apiKey}&limit=5&keywords=${query}&fields=title,url,price`)
+  script.setAttribute('src', `https://openapi.etsy.com/v2/listings/active.js?callback=EtsySearch.onFetch&api_key=${apiKey}&limit=5&keywords=${query}&fields=title,url,price`)
   document.head.appendChild(script)
   document.head.removeChild(script)
 }
 
 routie('listings/:query', fetchResults);
 
-export function callback(data) {
-  data.results.forEach(result => {
+function displayResults(results) {
+  results.forEach(result => {
     resultsEl.appendChild(getCard(result))
   })
+}
+
+export function onFetch(data) {
+  displayResults(data.results)
+  try {
+    localStorage.setItem(encodeURIComponent(data.params.keywords), JSON.stringify(data.results))
+  } catch(err) {
+  }
 }
